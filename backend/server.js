@@ -1,42 +1,22 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-
-
 const connectDB = require("./config/db");
 
-
 const app = express();
-
-
-
 connectDB();
 
-
-
 app.use(cors());
-
 app.use(express.json());
 
-
-
 app.get("/",(req,res)=>{
-
-    res.send("Task Tracker API Running");
-
+res.send("Task Tracker API Running");
 });
 
 
 
-app.use(
-    "/api/tasks",
-    require("./routes/taskRoutes")
-);
-
-
-
+app.use("/api/tasks",require("./routes/taskRoutes"));
 const PORT = process.env.PORT || 5000;
-
 
 app.listen(PORT,()=>{
 
